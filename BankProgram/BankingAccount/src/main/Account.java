@@ -1,3 +1,4 @@
+// Written by Christopher Eichert
 package main;
 
 public class Account {
@@ -23,6 +24,11 @@ public class Account {
 
         // If not enough in balance to withdraw, return 0.0
         var resultingBalance = _balance - amount;
+
+        if (amount < 0){
+            throw new IllegalArgumentException("Invalid amount entered.");
+        }
+
         if (resultingBalance < 0){
             System.out.println("Insufficient funds.");
             return 0.0;
@@ -39,10 +45,9 @@ public class Account {
     }
 
     /// Transfers money from this account to another
-    public void transferMoney(Account toAccount, double amount){
+    public void transferMoney(Account toAccount, double amount) throws InsufficientFundException {
         if (getBalance() < amount){
-            System.out.println("Insufficient funds. Cancelling transfer.");
-            return;
+            throw new InsufficientFundException("Insufficient funds. Cancelling transfer.");
         }
 
         var withdrawnAmount = withdraw(amount);
