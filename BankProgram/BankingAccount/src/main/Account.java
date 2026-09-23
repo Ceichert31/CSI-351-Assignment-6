@@ -12,9 +12,7 @@ public class Account {
     public void deposit(double amount){
         // Prevent depositing negative amounts
         if (amount <= 0){
-            // Eventually throw exception here
-            System.out.println("Cannot deposit a zero or negative amount");
-            return;
+            throw new IllegalArgumentException("Cannot deposit a zero or negative amount");
         }
         _balance += amount;
     }

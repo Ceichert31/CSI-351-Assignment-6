@@ -28,6 +28,18 @@ class AccountTest {
     }
 
     @Test
+    @DisplayName("Account Deposit Negative")
+    public void givenEmptyAccount_attemptNegativeDeposit_thenException(){
+        assertThrows(IllegalArgumentException.class, () -> account.deposit(-1));
+    }
+
+    @Test
+    @DisplayName("Account Deposit Zero")
+    public void givenEmptyAccount_attemptZeroDeposit_thenException(){
+        assertThrows(IllegalArgumentException.class, () -> account.deposit(0));
+    }
+
+    @Test
     @DisplayName("Account Withdraw")
     public void givenNonEmptyAccount_attemptWithdraw_thenTrue(){
         account.deposit(100);
@@ -83,4 +95,6 @@ class AccountTest {
 
         assertThrows(IllegalArgumentException.class, () -> account.withdraw(-1));
     }
+
+
 }
